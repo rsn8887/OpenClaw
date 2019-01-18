@@ -281,6 +281,8 @@ public:
 
     const shared_ptr<LevelMetadata> GetLevelMetadata(int levelNumber) const;
 
+    void HandleJoystickDeviceEvent(Uint32 type, Sint32 which);
+
 protected:
     virtual void VRegisterGameEvents() { }
     virtual bool VPerformStartupTests();
@@ -299,12 +301,16 @@ protected:
 
     GameOptions m_GameOptions;
 
+    SDL_Joystick* m_Joystick;
+    Sint32 m_JoystickDeviceIndex;
+
 private:
     bool InitializeDisplay(GameOptions& gameOptions);
     bool InitializeAudio(GameOptions& gameOptions);
     bool InitializeResources(GameOptions& gameOptions);
     bool InitializeFont(GameOptions& gameOptions);
     bool InitializeLocalization(GameOptions& gameOptions);
+    bool InitializeControllers(GameOptions& gameOptions);
     bool InitializeEventMgr();
     bool ReadConsoleConfig();
     bool ReadActorXmlPrototypes(GameOptions& gameOptions);
