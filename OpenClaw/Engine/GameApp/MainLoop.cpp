@@ -20,6 +20,8 @@ int RunGameEngine(int argc, char** argv)
     userDirectory = "/sdcard/claw/";
 #elif defined(__WINDOWS__)
     userDirectory = "";
+#elif defined(__vita__)
+	userDirectory = "ux0:data/claw/";
 #else
     const char* homedir;
 

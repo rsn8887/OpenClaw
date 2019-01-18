@@ -116,10 +116,10 @@ public:
 
     virtual bool VOpen();
     virtual std::string VGetName() const { return m_FileName; }
-    virtual int VGetRawResourceSize(Resource* r);
-    virtual int VGetRawResource(Resource* r, char *buffer);
-    virtual int VGetNumResources() const;
-    virtual std::string VGetResourceName(int num) const;
+    virtual int32 VGetRawResourceSize(Resource* r);
+    virtual int32 VGetRawResource(Resource* r, char *buffer);
+    virtual int32 VGetNumResources() const;
+    virtual std::string VGetResourceName(int32 num) const;
     virtual bool VIsUsingDevelopmentDIrectories() const { return false; }
     virtual std::vector<std::string> GetAllFilesInDirectory(const char* directoryPath);
 

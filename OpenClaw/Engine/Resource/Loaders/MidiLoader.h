@@ -1,7 +1,11 @@
 #ifndef MIDILOADER_H_
 #define MIDILOADER_H_
 
+#ifdef __vita__
+#include <tinyxml.h>
+#else
 #include <Tinyxml/tinyxml.h>
+#endif
 #include "../ResourceCache.h"
 
 class MidiResourceExtraData : public IResourceExtraData

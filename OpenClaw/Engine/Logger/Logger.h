@@ -5,6 +5,13 @@
 #include <string>
 #include <memory.h>
 
+#ifdef __vita__
+#include <psp2/kernel/clib.h>
+#define SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, ...) sceClibPrintf(__VA_ARGS__)
+#define SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, ...) sceClibPrintf(__VA_ARGS__)
+#define SDL_Log sceClibPrintf
+#endif
+
 namespace Logger
 {
     void GetOutputString(std::string& outOutputBuffer, const std::string& tag, const std::string& message, const char* funcName, const char* sourceFile, unsigned int lineNum);

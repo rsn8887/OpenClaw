@@ -1,0 +1,86 @@
+cmake_minimum_required(VERSION 2.8)
+
+# VitaSDK defines
+if( NOT DEFINED CMAKE_TOOLCHAIN_FILE )
+  if( DEFINED ENV{VITASDK} )
+    set(CMAKE_TOOLCHAIN_FILE "$ENV{VITASDK}/share/vita.toolchain.cmake" CACHE PATH "toolchain file")
+  else()
+    message(FATAL_ERROR "Please define VITASDK to point to your SDK path!")
+  endif()
+endif()
+
+# Project start
+set(VITA_APPNAME OpenClaw)
+set(VITA_TITLEID "OPENCLAW1")
+
+project(${VITA_APPNAME})
+include("${VITASDK}/share/vita.cmake" REQUIRED)
+
+add_subdirectory(Box2D)
+add_subdirectory(libwap)
+
+# Flags and includes
+set(VITA_MKSFOEX_FLAGS "-d ATTRIBUTE2=12")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -g -std=gnu++11 -DMINIZ_NO_TIME -fpermissive")
+
+include_directories(
+  ${CMAKE_SOURCE_DIR}
+  ${CMAKE_SOURCE_DIR}/Box2D
+  ${CMAKE_SOURCE_DIR}/libwap
+  ${CMAKE_SOURCE_DIR}/ThirdParty/FastDelegate
+  ${CMAKE_SOURCE_DIR}/ThirdParty/Tinyxml
+)
+
+link_directories(
+  ${CMAKE_CURRENT_BINARY_DIR}
+  ${CMAKE_CURRENT_BINARY_DIR}/Box2D
+  ${CMAKE_CURRENT_BINARY_DIR}/libwap
+)
+
+# Builds
+file(GLOB_RECURSE SRCS
+  ThirdParty/Tinyxml/tiny*.cpp
+  OpenClaw/*.cpp)
+
+add_executable(${VITA_APPNAME}
+  ${SRCS}
+)
+
+target_link_libraries(${VITA_APPNAME}
+  libwap
+  Box2D
+  SDL2
+  SDL2_mixer
+  SDL2_ttf
+  SDL2_image
+  SDL2_gfx
+  vorbisfile
+  vorbis
+  ogg
+  jpeg
+  png
+  freetype
+  vita2d
+  m
+  z
+  SceAppUtil_stub
+  SceAudio_stub
+  SceCommonDialog_stub
+  SceCtrl_stub
+  SceDisplay_stub
+  SceGxm_stub
+  SceHid_stub
+  SceSysmodule_stub
+  SceTouch_stub
+)
+
+# Create Vita artifacts
+vita_create_self(eboot.bin ${VITA_APPNAME} UNSAFE)
+vita_create_vpk(${VITA_APPNAME}.vpk ${VITA_TITLEID} eboot.bin
+  VERSION ${VITA_VERSION}
+  NAME ${VITA_APPNAME}
+  #FILE res/icon0.png sce_sys/icon0.png
+  #FILE res/bg.png sce_sys/livearea/contents/bg.png
+  #FILE res/startup.png sce_sys/livearea/contents/startup.png
+  #FILE res/template.xml sce_sys/livearea/contents/template.xml
+)

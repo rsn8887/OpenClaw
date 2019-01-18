@@ -1,3 +1,8 @@
+if (VITA)
+    include(CMakeLists.vita)
+    return()
+endif()
+
 cmake_minimum_required(VERSION 3.2)
 
 option(Android "Android" OFF)

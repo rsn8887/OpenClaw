@@ -5,7 +5,11 @@
 #include <sstream>
 #include <string>
 
+#ifdef __vita__
+#include <FastDelegate.h>
+#else
 #include <FastDelegate/FastDelegate.h>
+#endif
 
 #include "../Interfaces.h"
 

@@ -148,7 +148,7 @@ bool ResourceZipArchive::VOpen()
     return false;
 }
 
-int ResourceZipArchive::VGetRawResourceSize(Resource* r)
+int32 ResourceZipArchive::VGetRawResourceSize(Resource* r)
 {
     std::string path = r->GetName().c_str();
     int resourceNum = m_pZipFile->Find(path);
@@ -160,7 +160,7 @@ int ResourceZipArchive::VGetRawResourceSize(Resource* r)
     return m_pZipFile->GetFileLen(resourceNum);
 }
 
-int ResourceZipArchive::VGetRawResource(Resource* r, char *buffer)
+int32 ResourceZipArchive::VGetRawResource(Resource* r, char *buffer)
 {
     int size = 0;
     std::string path = r->GetName();
@@ -174,12 +174,12 @@ int ResourceZipArchive::VGetRawResource(Resource* r, char *buffer)
     return size;
 }
 
-int ResourceZipArchive::VGetNumResources() const
+int32 ResourceZipArchive::VGetNumResources() const
 {
     return (m_pZipFile == NULL) ? 0 : m_pZipFile->GetNumFiles();
 }
 
-std::string ResourceZipArchive::VGetResourceName(int num) const
+std::string ResourceZipArchive::VGetResourceName(int32 num) const
 {
     std::string resName = "";
     if (m_pZipFile != NULL && num >= 0 && num < m_pZipFile->GetNumFiles())

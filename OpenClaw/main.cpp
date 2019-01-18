@@ -33,6 +33,10 @@ extern "C" void Java_org_libsdl_app_SDLActivity_nativeInit( \
 }
 #endif //ANDROID
 
+#ifdef __vita__
+int _newlib_heap_size_user = 192 * 1024 * 1024;
+#endif
+
 int main(int argc, char* argv[])
 {
     return RunGameEngine(argc, argv);

@@ -1,7 +1,9 @@
 #ifndef WAVLOADER_H_
 #define WAVLOADER_H_
 
+#ifndef __vita__
 #include <Tinyxml/tinyxml.h>
+#endif
 #include "../ResourceCache.h"
 #include <SDL2/SDL_mixer.h>
 #include <tinyxml.h>

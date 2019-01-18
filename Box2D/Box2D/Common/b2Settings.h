@@ -19,6 +19,7 @@
 #ifndef B2_SETTINGS_H
 #define B2_SETTINGS_H
 
+#include <stdint.h>
 #include <stddef.h>
 #include <assert.h>
 #include <float.h>
@@ -30,12 +31,12 @@
 #define B2_NOT_USED(x) ((void)(x))
 #define b2Assert(A) assert(A)
 
-typedef signed char	int8;
-typedef signed short int16;
-typedef signed int int32;
-typedef unsigned char uint8;
-typedef unsigned short uint16;
-typedef unsigned int uint32;
+typedef int8_t int8;
+typedef int16_t int16;
+typedef int32_t int32;
+typedef uint8_t uint8;
+typedef uint16_t uint16;
+typedef uint32_t uint32;
 typedef float float32;
 typedef double float64;
 
@@ -55,7 +56,7 @@ typedef double float64;
 
 /// The maximum number of vertices on a convex polygon. You cannot increase
 /// this too much because b2BlockAllocator has a maximum object size.
-#define b2_maxPolygonVertices	8
+#define b2_maxPolygonVertices	(int32)8
 
 /// This is used to fatten AABBs in the dynamic tree. This allows proxies
 /// to move by a small amount without triggering a tree adjustment.

@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.2)
 
 set(CMAKE_CXX_STANDARD 11) # C++11...
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+if (VITA)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMINIZ_NO_TIME")
+endif (VITA)
 
 project(libwap)
 
