@@ -49,8 +49,8 @@ add_executable(${VITA_APPNAME}
 target_link_libraries(${VITA_APPNAME}
   libwap
   Box2D
-  SDL2
   SDL2_mixer
+  SDL2
   SDL2_ttf
   SDL2_image
   SDL2_gfx
@@ -62,7 +62,12 @@ target_link_libraries(${VITA_APPNAME}
   freetype
   vita2d
   m
+  flac
+  mpg123
   z
+  zip
+  mikmod
+  modplug
   SceAppUtil_stub
   SceAudio_stub
   SceCommonDialog_stub
